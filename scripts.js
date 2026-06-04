@@ -10,39 +10,19 @@ document.querySelectorAll('.nav-links a').forEach(link => {
 
 const form = document.getElementById('contatoForm');
 if (form) {
-  form.addEventListener('submit', async function (e) {
+  form.addEventListener('submit', function (e) {
     e.preventDefault();
-    const btn = document.getElementById('btnEnviar');
-    const sucesso = document.getElementById('sucesso');
-    const erro = document.getElementById('erro');
 
-    btn.textContent = 'Enviando...';
-    btn.disabled = true;
-    sucesso.style.display = 'none';
-    erro.style.display = 'none';
+    const nome     = document.getElementById('nome').value;
+    const email    = document.getElementById('email').value;
+    const assunto  = document.getElementById('assunto').value;
+    const mensagem = document.getElementById('mensagem').value;
 
-    const data = new FormData(form);
+    const texto = `Olá Alessandra! Vim pelo seu site e gostaria de entrar em contato.%0A%0A*Nome:* ${encodeURIComponent(nome)}%0A*E-mail:* ${encodeURIComponent(email)}%0A*Assunto:* ${encodeURIComponent(assunto)}%0A*Mensagem:* ${encodeURIComponent(mensagem)}`;
 
-    try {
-      const response = await fetch('https://formspree.io/f/mbdelyva', {
-        method: 'POST',
-        body: data,
-        headers: { 'Accept': 'application/json' }
-      });
+    window.open(`https://wa.me/5532988350050?text=${texto}`, '_blank');
 
-      if (response.ok) {
-        sucesso.style.display = 'block';
-        form.reset();
-        setTimeout(() => { sucesso.style.display = 'none'; }, 6000);
-      } else {
-        erro.style.display = 'block';
-      }
-    } catch {
-      erro.style.display = 'block';
-    }
-
-    btn.textContent = 'Enviar mensagem';
-    btn.disabled = false;
+    form.reset();
   });
 }
 
