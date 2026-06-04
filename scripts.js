@@ -8,12 +8,42 @@ document.querySelectorAll('.nav-links a').forEach(link => {
   });
 });
 
-function enviarFormulario(e) {
-  e.preventDefault();
-  const sucesso = document.getElementById('sucesso');
-  sucesso.style.display = 'block';
-  e.target.reset();
-  setTimeout(() => { sucesso.style.display = 'none'; }, 5000);
+const form = document.getElementById('contatoForm');
+if (form) {
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    const btn = document.getElementById('btnEnviar');
+    const sucesso = document.getElementById('sucesso');
+    const erro = document.getElementById('erro');
+
+    btn.textContent = 'Enviando...';
+    btn.disabled = true;
+    sucesso.style.display = 'none';
+    erro.style.display = 'none';
+
+    const data = new FormData(form);
+
+    try {
+      const response = await fetch('https://formspree.io/f/mbdelyva', {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (response.ok) {
+        sucesso.style.display = 'block';
+        form.reset();
+        setTimeout(() => { sucesso.style.display = 'none'; }, 6000);
+      } else {
+        erro.style.display = 'block';
+      }
+    } catch {
+      erro.style.display = 'block';
+    }
+
+    btn.textContent = 'Enviar mensagem';
+    btn.disabled = false;
+  });
 }
 
 window.addEventListener('scroll', () => {
