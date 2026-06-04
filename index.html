@@ -199,7 +199,7 @@
           </div>
         </div>
 
-        <form class="contato-form" onsubmit="enviarFormulario(event)">
+        <form class="contato-form" action="https://formspree.io/f/alemarkito@yahoo.com.br" method="POST">
           <div class="form-group">
             <label for="nome">Nome</label>
             <input type="text" id="nome" placeholder="Seu nome completo" required />
@@ -216,8 +216,10 @@
             <label for="mensagem">Mensagem</label>
             <textarea id="mensagem" rows="5" placeholder="Como posso te ajudar?" required></textarea>
           </div>
+          <input type="hidden" name="_replyto" value="alemarkito@yahoo.com.br" />
+          <input type="hidden" name="_subject" value="Nova mensagem do site - Alessandra Marquito" />
+          <input type="hidden" name="_next" value="https://dessamarkito.github.io/site-ale-markito/" />
           <button type="submit" class="btn-gold full">Enviar mensagem</button>
-          <p class="form-success" id="sucesso">✅ Mensagem enviada! Retorno em breve.</p>
         </form>
 
       </div>
