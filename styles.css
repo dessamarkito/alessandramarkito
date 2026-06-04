@@ -768,6 +768,13 @@ a {
   font-weight: 500;
 }
 
+.field-erro {
+  color: #ff6b6b;
+  font-size: 0.82rem;
+  margin-top: 4px;
+  display: block;
+}
+
 /* ========================
    FOOTER
 ======================== */

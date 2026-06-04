@@ -199,25 +199,38 @@
           </div>
         </div>
 
+        <div data-fs-success class="form-success">✅ Mensagem enviada! Alessandra retornará em breve.</div>
+        <div data-fs-error class="form-erro"></div>
+
         <form class="contato-form" id="contatoForm">
           <div class="form-group">
             <label for="nome">Nome</label>
-            <input type="text" id="nome" name="nome" placeholder="Seu nome completo" required />
+            <input type="text" id="nome" name="nome" placeholder="Seu nome completo" required data-fs-field />
+            <span data-fs-error="nome" class="field-erro"></span>
           </div>
           <div class="form-group">
             <label for="email">E-mail</label>
-            <input type="email" id="email" name="email" placeholder="seu@email.com" required />
+            <input type="email" id="email" name="email" placeholder="seu@email.com" required data-fs-field />
+            <span data-fs-error="email" class="field-erro"></span>
           </div>
           <div class="form-group">
             <label for="assunto">Assunto</label>
-            <input type="text" id="assunto" name="assunto" placeholder="Consultoria, palestra, acadêmico..." required />
+            <input type="text" id="assunto" name="assunto" placeholder="Consultoria, palestra, acadêmico..." required data-fs-field />
+            <span data-fs-error="assunto" class="field-erro"></span>
           </div>
           <div class="form-group">
             <label for="mensagem">Mensagem</label>
-            <textarea id="mensagem" name="mensagem" rows="5" placeholder="Como posso te ajudar?" required></textarea>
+            <textarea id="mensagem" name="mensagem" rows="5" placeholder="Como posso te ajudar?" required data-fs-field></textarea>
+            <span data-fs-error="mensagem" class="field-erro"></span>
           </div>
-          <button type="submit" class="btn-gold full" id="btnEnviar">Enviar pelo WhatsApp</button>
+          <button type="submit" class="btn-gold full" data-fs-submit-btn>Enviar mensagem</button>
         </form>
+
+        <script>
+          window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+          formspree('initForm', { formElement: '#contatoForm', formId: 'mbdelyva' });
+        </script>
+        <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
 
       </div>
     </div>
